@@ -7,7 +7,7 @@
  */
 namespace icirgio\HeadHunter;
 
-use HeadHunter\Loader;
+use icirgio\HeadHunter\Loader;
 use pocketmine\event\Listener;
 use onebone\economyapi\EconomyAPI;
 use pocketmine\item\Item;
