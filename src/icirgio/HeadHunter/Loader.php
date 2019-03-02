@@ -9,7 +9,7 @@ namespace icirgio\HeadHunter;
 
 use pocketmine\utils\Config;
 use pocketmine\event\Listener;
-use HeadHunter\HeadHuntingEvent;
+use icirgio\HeadHunter\HeadHuntingEvent;
 use pocketmine\plugin\PluginBase;
 
 class Loader extends PluginBase implements Listener {
