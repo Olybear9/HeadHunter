@@ -34,7 +34,7 @@ class HeadHuntingEvent implements Listener
         if($nametag->hasTag("PlayerHead", StringTag::class)){
             if($this->plugin->config->get("place-enabled") == 1){
                 $event->setCancelled(true);
-                $player->sendMessage($this->plugin->config->get("place-head"));
+                $event->getPlayer()->sendMessage($this->plugin->config->get("place-head"));
             } else {
             }
         }
