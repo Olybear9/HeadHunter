@@ -42,9 +42,10 @@ class HeadHuntingEvent implements Listener
     
     public function onBreak(BlockBreakEvent $event){
         //Gives Head When you break it...
-        $nametag = $event->getBlock()->getNamedTag();
-        if($nametag->hasTag("PlayerHead", StringTag::class)){
-            $block = $event->getBlock();
+        $drops = $event->getDrops();
+        foreach($drops as $block){
+        $nametag = $block->getNamedTag();
+        if($nametag->hasTag("PlayerHead", StringTag::lass)){
             $percentage = (int) $this->plugin->config->get("percentage");
             $nametag = $block->getNamedTag();
             $name = $nametag->getString("PlayerHead");
@@ -55,6 +56,7 @@ class HeadHuntingEvent implements Listener
         ]);
             $event->getPlayer()->getInventory()->addItem($block);
             $event->setDrops([]);
+        }
         }
     }
     
