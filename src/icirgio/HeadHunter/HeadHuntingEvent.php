@@ -45,7 +45,7 @@ class HeadHuntingEvent implements Listener
         $drops = $event->getDrops();
         foreach($drops as $block){
         $nametag = $block->getNamedTag();
-        if($nametag->hasTag("PlayerHead", StringTag::lass)){
+        if($nametag->hasTag("PlayerHead", StringTag::class)){
             $percentage = (int) $this->plugin->config->get("percentage");
             $nametag = $block->getNamedTag();
             $name = $nametag->getString("PlayerHead");
