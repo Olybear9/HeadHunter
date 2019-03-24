@@ -1,5 +1,5 @@
 name: HeadHunter
-version: 1.0.1
+version: 1.2
 main: icirgio\HeadHunter\Loader
 author: iCirgio
 depend: EconomyAPI
