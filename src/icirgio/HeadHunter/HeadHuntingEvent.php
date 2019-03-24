@@ -30,12 +30,15 @@ class HeadHuntingEvent implements Listener
 
     public function onPlace(BlockPlaceEvent $event){
         //cancels head being placed...
+        if($event->isCancelled()) return;
         $nametag = $event->getItem()->getNamedTag();
         if($nametag->hasTag("PlayerHead", StringTag::class)){
             if($this->plugin->config->get("place-enabled") == 1){
                 $event->setCancelled(true);
                 $event->getPlayer()->sendMessage($this->plugin->config->get("place-head"));
-            } else {
+            }
+            if($this->plugin->config->get("place-enabled") != 1){
+                $event->setCancelled(false);
             }
         }
     }
