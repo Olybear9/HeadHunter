@@ -10,7 +10,7 @@
 
 # Percentage meaning the redeemer of the player head will get the certain percentage of the players head!
 # Use a number 0-100, anything above or below may give errors
-percantage: 0
+percentage: 0
 
 # Choose to allow Placing Of Heads Or Disable It.
 # 1 = heads Cannot Be Placed
@@ -21,4 +21,7 @@ place-head: "You cannot place Heads"
 own-head: "You cannot sell your own head"
 
 # When a player sells a head
-sell-head: "You sold a players head"
+# You can now use:
+# {player} - The name of the player's head you are selling
+# {price} - The amount of money you will get for selling the head
+sell-head: "You sold a {player}'s head for ${price}"
