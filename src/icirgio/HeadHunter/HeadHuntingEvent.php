@@ -30,15 +30,15 @@ class HeadHuntingEvent implements Listener
 
     public function onPlace(BlockPlaceEvent $event){
         //cancels head being placed...
-        if($event->isCancelled()) return;
-        $nametag = $event->getItem()->getNamedTag();
-        if($nametag->hasTag("PlayerHead", StringTag::class)){
-            if($this->plugin->config->get("place-enabled") == 1){
-                $event->setCancelled(true);
-                $event->getPlayer()->sendMessage($this->plugin->config->get("place-head"));
-            }
-            if($this->plugin->config->get("place-enabled") != 1){
-                $event->setCancelled(false);
+        if(!$event->isCancelled()){
+            $nametag = $event->getItem()->getNamedTag();
+            if($nametag->hasTag("PlayerHead", StringTag::class)){
+                if($this->plugin->config->get("place-enabled") == 1){
+                    $event->setCancelled(true);
+                    $event->getPlayer()->sendMessage($this->plugin->config->get("place-head"));
+                } else {
+                    $event->setCancelled(false);
+                }
             }
         }
     }
@@ -94,7 +94,8 @@ class HeadHuntingEvent implements Listener
                 $headmoney = EconomyAPI::getInstance()->myMoney($head);
                 $percentage = (int) $this->plugin->config->get("percentage");
                 $moneystolen = $headmoney / $percentage;
-                $player->sendMessage($this->plugin->config->get("sell-head"));
+                $message = str_replace(["{player}", "{price}"], [$head, $moneystolen], $this->plugin->config->get("sell-head"));
+                $player->sendMessage($message);
                 EconomyAPI::getInstance()->addMoney($player, $moneystolen);
                 EconomyAPI::getInstance()->reduceMoney($head, $moneystolen);
                 $item->pop();
