@@ -27,22 +27,26 @@ class HeadHuntingEvent implements Listener
     {
         $this->plugin = $plugin;
     }
-
+    /**
+      * @param BlockPlaceEvent $event
+      * @ignoreCancelled true
+      */
     public function onPlace(BlockPlaceEvent $event){
         //cancels head being placed...
-        if(!$event->isCancelled()){
-            $nametag = $event->getItem()->getNamedTag();
-            if($nametag->hasTag("PlayerHead", StringTag::class)){
-                if($this->plugin->config->get("place-enabled") == 1){
-                    $event->setCancelled(true);
-                    $event->getPlayer()->sendMessage($this->plugin->config->get("place-head"));
-                } else {
-                    $event->setCancelled(false);
-                }
+        $nametag = $event->getItem()->getNamedTag();
+        if($nametag->hasTag("PlayerHead", StringTag::class)){
+            if($this->plugin->config->get("place-enabled") == 1){
+                $event->setCancelled(true);
+                $event->getPlayer()->sendMessage($this->plugin->config->get("place-head"));
+            } else {
+                $event->setCancelled(false);
             }
         }
     }
-    
+
+    /**
+     * @param BlockBreakEvent $event
+     */
     public function onBreak(BlockBreakEvent $event){
         //Gives Head When you break it...
         $drops = $event->getDrops();
