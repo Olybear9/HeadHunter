@@ -97,7 +97,7 @@ class HeadHuntingEvent implements Listener
                 $head = $nametag->getString("PlayerHead");
                 $headmoney = EconomyAPI::getInstance()->myMoney($head);
                 $percentage = (int) $this->plugin->config->get("percentage");
-                $moneystolen = $headmoney / $percentage;
+                $moneystolen = $headmoney * ($percentage / 100);
                 $message = str_replace(["{player}", "{price}"], [$head, $moneystolen], $this->plugin->config->get("sell-head"));
                 $player->sendMessage($message);
                 EconomyAPI::getInstance()->addMoney($player, $moneystolen);
